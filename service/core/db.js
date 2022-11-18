@@ -5,7 +5,7 @@ const sequelize = new Sequelize(dbName, user, password, {
   dialect: "mysql",
   host,
   port,
-  logging: false, // 控制台打印sql语句
+  logging: true, // 控制台打印sql语句
   timezone: "+08:00",
   define: {
     // create_time  update_time  delete_time
@@ -22,7 +22,7 @@ const sequelize = new Sequelize(dbName, user, password, {
 sequelize.sync({
   force: false,
 });
- 
-module.exports = { 
+
+module.exports = {
   sequelize,
 };
