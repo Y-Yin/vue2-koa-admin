@@ -8,6 +8,8 @@ const { TokenValidator } = require('../validators/validator')
 // Auth中间件
 const { Auth }  = require('../../middlewares/auth')
 
+const { WXManager } = require('../services/wx')
+
 const { generateToken }  = require('../../core/util')
 
 router.post('/',async (ctx)=>{
@@ -21,6 +23,8 @@ router.post('/',async (ctx)=>{
         token = await userNameLogin(v.get('body.account'),v.get('body.secret'))
         break;
         case LoginType.USER_MINI_PROGRAM :   
+        console.log('执行')
+        token = await WXManager.codeToToken(v.get('body.account'))
         break;
         default:
             throw new global.errs.ParameterException('没有对应的处理函数')

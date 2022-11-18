@@ -25,6 +25,22 @@ class User extends Model {
 
     }
 
+    static async getUserByOpenid(openid){
+        const  user = await User.findOne({
+          where:{
+            openid
+          }
+        })
+        return user
+    }
+
+
+    static async registerByOpenid(openid){
+      return await User.create({
+        openid
+      })
+  }
+
 }
 //  sequelize 不设置id，会自动设置id为主键
 User.init(
